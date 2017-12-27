@@ -25,3 +25,10 @@ end
 Physics.Rocketry.escape_velocity(Physics.Planet.__struct__)
 
 We have created the Converter module, this allows us to seprate funcation logic to diffirent modules.
+
+I have added tests for, we can use the following url to verify unknown values. mass/kg radius/meters
+
+ http://www.calctool.org/CALC/phys/astronomy/escape_velocity
+
+
+https://nssdc.gsfc.nasa.gov/planetary/factsheet/
