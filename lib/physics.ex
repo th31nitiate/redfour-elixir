@@ -12,7 +12,5 @@ defmodule Physics do
       :world
 
   """
-  def hello do
-    :world
-  end
+
 end

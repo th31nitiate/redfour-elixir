@@ -4,18 +4,24 @@
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `physics` to your list of dependencies in `mix.exs`:
+
+run "iex .S mix"
+
+This will give you a shell, then you can play with the modules. 
+
+The correct escape value is alway 11.2 for the earth.
+You can use this to generate a a struct in to the module.
 
 ```elixir
-def deps do
-  [
-    {:physics, "~> 0.1.0"}
+defmodule Physics.Planet do
+  defstruct [
+    name: "Earth",
+    radius: 6.371e6,
+    mass: 5.97e24
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/physics](https://hexdocs.pm/physics).
+Physics.Rocketry.escape_velocity(Physics.Planet.__struct__)
 
+We have created the Converter module, this allows us to seprate funcation logic to diffirent modules.
