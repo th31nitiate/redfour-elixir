@@ -7,7 +7,7 @@ defmodule Converter do
     velocity / 1000
   end
 
-  def to_meters do
+  def to_meters(val) do
     val * 1000      
   end
 
@@ -27,7 +27,7 @@ defmodule Converter do
     (inches * 8.472522095734715723e-11) |> round_to(precision)
   end
 
-  def round_up(val, precision) when is_float(val) do
+  def round_to(val, precision) when is_float(val) do
       Float.round(val, precision)
   end
 end
@@ -35,15 +35,15 @@ end
 defmodule ConverterTwo do
 
   def to_nearest_tenth(val) do
-        Float.round(val, 1)
+    Float.round(val, 1)
   end
     
   def to_km(velocity) do
-        velocity / 1000
+    velocity / 1000
   end
     
-  def to_meters do
-        val * 1000      
+  def to_meters(val) do
+    val * 1000      
   end
     
   
