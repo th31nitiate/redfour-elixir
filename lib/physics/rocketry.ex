@@ -1,5 +1,6 @@
 defmodule Physics.Rocketry do
   import Converter
+  import Calcs
 
   @moon %{mass: 7.35e22, radius: 1.738e6}
   @mars %{mass: 6.39e23, radius: 3.4e6}
@@ -40,7 +41,7 @@ defmodule Physics.Rocketry do
 
   defp calculate_escape(%{mass: mass, radius: radius}) do
     2 * @newtons_constant * mass / radius
-      |> :math.sqrt
+      |> Calcs.square_root
   end
 
 end
