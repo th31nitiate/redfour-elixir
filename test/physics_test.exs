@@ -29,4 +29,15 @@ defmodule PhysicsTest do
     assert Physics.Rocketry.escape_velocity(:moon) == 2.4 #We are rounding up to the nearest 10th
   end
 
+  test "Orbital acceleration for earth at 100km" do
+    orbital_acc = Physics.Rocketry.orbital_acceleration(99)
+    assert orbital_acc == 9.515619587729839
+  end
+
+  test "Orbital term for 100km above earth" do
+    term = Physics.Rocketry.orbital_term(99)
+    IO.puts term
+    assert (term > 4) && (term < 5)  #crap fix this!
+  end
+
 end
