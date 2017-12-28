@@ -24,7 +24,8 @@ defmodule Physics.Rocketry do
   end
 
   def orbital_time(time) do
-    newtons_gravitational_constant
+    newtons_gravitational_constant * Planets.earth.mass * (time |> squared) / 4 * (:math.pi |> squared)
+    |> cubed
   end
 
   def orbital_acceleration(height) do
@@ -45,4 +46,21 @@ defmodule Physics.Rocketry do
     Planets.earth.radius + (height |> to_meters)
   end
 
+  def earth_to_orbit_height_for_term(hours) do
+    hours
+      |> hours_to_seconds
+      |> orbital_height_for_term
+      |> earth_to_orbit_height
+      |> to_km
+  end
+  
+  defp earth_to_orbit_height(height) do
+    height - Planets.earth.radius
+  end
+  
+  defp orbital_height_for_term(seconds) do
+    newtons_gravitational_constant * Planets.earth.mass * (seconds |> squared)
+      / (4 * (:math.pi |> squared))
+    |> cube_root
+  end
 end
