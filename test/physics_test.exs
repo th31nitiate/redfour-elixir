@@ -23,4 +23,14 @@ defmodule PhysicsTest do
     assert ConverterTwo.to_light_seconds({:miles, 1000}) == 0.00537
   end
 
+  test "Test to ensure the Ev is valid for mars" do
+    mars = %{mass: 6.39e23, radius: 3.4e6}
+    assert Physics.Rocketry.escape_velocity_two(mars) == 5.0
+  end
+
+  test "Test to ensure the Ev is valid for moon" do
+    moon = %{mass: 7.35e22, radius: 1.738e6}
+    assert Physics.Rocketry.escape_velocity_two(moon) == 2.4 #We are rounding up to the nearest 10th
+  end
+
 end
