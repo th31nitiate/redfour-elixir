@@ -10,6 +10,8 @@ defmodule Physics.Rocketry do
   def escape_velocity(:mars), do: mars |> escape_velocity
 
 
+
+  #escape reurnts type kilometers
   def escape_velocity(planet) when is_map(planet) do
     planet
       |> calculate_escape
@@ -21,11 +23,6 @@ defmodule Physics.Rocketry do
     4 * (:math.pi |> squared) * (orbital_radius(height) |> cubed) / (newtons_gravitational_constant * earth.mass)
       |> square_root
       |> seconds_to_hours
-  end
-
-  def orbital_time(time) do
-    newtons_gravitational_constant * Planets.earth.mass * (time |> squared) / 4 * (:math.pi |> squared)
-    |> cubed
   end
 
   def earth_to_orbit_height_for_term(hours) do
@@ -51,11 +48,11 @@ defmodule Physics.Rocketry do
       |> square_root
   end
 
-  defp orbital_radius(height) do
+  defp orbital_radius(height) do #height in kilometers
     Planets.earth.radius + (height |> kilometers_to_meters)
   end
 
-  defp earth_to_orbit_height(height), do: height - Planets.earth.radius
+  defp earth_to_orbit_height(height), do: height - Planets.earth.radius #this is in meters
   
   defp orbital_height_for_term(seconds) do
     newtons_gravitational_constant * Planets.earth.mass * (seconds |> squared)

@@ -1,22 +1,24 @@
 defmodule Converter do
 
-  def float_to_nearest_tenth(val) when is_float(val) do
-    Float.round(val, 1)
-  end
+  def float_to_nearest_tenth(val) when is_float(val), do: Float.round(val, 1)
     
-  def meters_to_kilometers(velocity) do
-    velocity / 1000
-  end
-    
-  def kilometers_to_meters(val) do
-    val * 1000      
+  def meters_to_kilometers(velocity), do: velocity / 1000
+  def kilometers_to_meters(val), do: val * 1000
+
+  def miles_to_kilometers(miles), do: miles * 1.60934 |> round_to(3)
+  def kilometers_to_miles(kilometers), do: kilometers / 1.60934 |> round_to(3)
+ 
+  def to_kilometers(arg), do: to_kilometers(arg, precision: 5) 
+  def to_kilometers({unit, val}, precision: precision) do
+    case unit do
+      :miles -> from_miles(val)
+      :meters -> from_meters(val)
+      :feet -> from_feet(val)
+      :inches -> from_inches(val)
+    end |> round_to(precision) #This method looks cleaner than setting a variable on return
   end
 
-  def miles_to_kilometers(miles) do
-    miles * 1.60934
-    |> round_to(3)
-  end
-    
+
    def to_light_seconds(arg), do: to_light_seconds(arg, precision: 5) 
    def to_light_seconds({unit, val}, precision: precision) do
      case unit do
