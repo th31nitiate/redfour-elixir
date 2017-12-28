@@ -11,26 +11,22 @@ defmodule PhysicsTest do
     assert Physics.Rocketry.escape_velocity(planet_x) == 0.9
   end
 
-  test "Converter one works" do
+  test "Converter works" do
     assert Converter.to_light_seconds({:miles, 1000}, precision: 5) == 0.00537
   end
 
-  test "ConverterTwo works" do
-    assert ConverterTwo.to_light_seconds({:miles, 1000}, precision: 5) == 0.00537
-  end
-
-  test "ConverterTwo works with default values" do
-    assert ConverterTwo.to_light_seconds({:miles, 1000}) == 0.00537
+  test "Converter works with default values" do
+    assert Converter.to_light_seconds({:miles, 1000}) == 0.00537
   end
 
   test "Test to ensure the Ev is valid for mars" do
     mars = %{mass: 6.39e23, radius: 3.4e6}
-    assert Physics.Rocketry.escape_velocity_two(mars) == 5.0
+    assert Physics.Rocketry.escape_velocity(:mars) == 5.0
   end
 
   test "Test to ensure the Ev is valid for moon" do
     moon = %{mass: 7.35e22, radius: 1.738e6}
-    assert Physics.Rocketry.escape_velocity_two(moon) == 2.4 #We are rounding up to the nearest 10th
+    assert Physics.Rocketry.escape_velocity(:moon) == 2.4 #We are rounding up to the nearest 10th
   end
 
 end
