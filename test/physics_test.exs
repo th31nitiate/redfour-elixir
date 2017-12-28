@@ -31,14 +31,14 @@ defmodule PhysicsTest do
 
   test "Orbital acceleration for earth at 99km" do
     orbital_acc = Physics.Rocketry.orbital_acceleration(99)
-    assert orbital_acc == 9.515619587729839
+    assert orbital_acc == 9.515619587729839 # the peceision here helps ensure that
+    #The acc is correct.
   end
 
   test "Orbital term for 6530km - earth radius" do
     term = Physics.Rocketry.orbital_term(6530)
     assert (term > 4) && (term < 5) 
   end
-
 
   test "Seconds to hours test" do
     value1 = Converter.hours_to_seconds(2)
