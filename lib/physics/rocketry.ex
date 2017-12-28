@@ -28,23 +28,9 @@ defmodule Physics.Rocketry do
     |> cubed
   end
 
-  def orbital_acceleration(height) do
-    (orbital_speed(height) |> squared) / orbital_radius(height)
-  end
 
-  def orbital_speed(height) do
-    newtons_gravitational_constant * Planets.earth.mass / orbital_radius(height)
-      |> square_root
-  end
 
-  defp calculate_escape(%{mass: mass, radius: radius}) do
-    2 * newtons_gravitational_constant * mass / radius
-      |> square_root
-  end
 
-  defp orbital_radius(height) do
-    Planets.earth.radius + (height |> to_meters)
-  end
 
   def earth_to_orbit_height_for_term(hours) do
     hours
@@ -54,6 +40,25 @@ defmodule Physics.Rocketry do
       |> to_km
   end
   
+  def orbital_acceleration(height) do
+    (orbital_speed(height) |> squared) / orbital_radius(height)
+  end
+
+  def orbital_speed(height) do
+    newtons_gravitational_constant * Planets.earth.mass / orbital_radius(height)
+      |> square_root
+  end
+
+  #Privates
+  defp calculate_escape(%{mass: mass, radius: radius}) do
+    2 * newtons_gravitational_constant * mass / radius
+      |> square_root
+  end
+
+  defp orbital_radius(height) do
+    Planets.earth.radius + (height |> to_meters)
+  end
+
   defp earth_to_orbit_height(height), do: height - Planets.earth.radius
   
   defp orbital_height_for_term(seconds) do
@@ -61,4 +66,6 @@ defmodule Physics.Rocketry do
       / (4 * (:math.pi |> squared))
     |> cube_root
   end
+
+
 end

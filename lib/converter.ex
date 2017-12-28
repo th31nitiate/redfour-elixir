@@ -1,6 +1,6 @@
 defmodule Converter do
 
-  def to_nearest_tenth(val) do
+  def to_nearest_tenth(val) when is_float(val) do
     Float.round(val, 1)
   end
     
@@ -21,14 +21,12 @@ defmodule Converter do
        :inches -> from_inches(val)
      end |> round_to(precision) #This method looks cleaner than setting a variable on return
    end
-  
-   def seconds_to_hours(val)  when is_integer(val) or is_float(val) do
-    val / 3600 |> to_nearest_tenth
-   end
+ 
+   def seconds_to_hours(val)  when is_integer(val), do: val / 3600 
+   def seconds_to_hours(val)  when is_float(val), do: val / 3600 |> to_nearest_tenth
 
-   def hours_to_seconds(val)  when is_integer(val) or is_float(val) do
-    val * 3600 |> to_nearest_tenth
-   end
+   def hours_to_seconds(val)  when is_integer(val), do: val * 3600 
+   def hours_to_seconds(val)  when is_float(val), do: val * 3600 |> to_nearest_tenth
 
    defp from_miles(val), do: val * 5.36819e-6
    defp from_meters(val), do: val * 3.335638620368e-9
