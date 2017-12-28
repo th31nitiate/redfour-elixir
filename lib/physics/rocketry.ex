@@ -46,14 +46,14 @@ defmodule ConverterTwo do
     val * 1000      
   end
     
-  
+   def to_light_seconds(arg), do: to_light_seconds(arg, precision: 5) 
    def to_light_seconds({unit, val}, precision: precision) do
      case unit do
        :miles -> from_miles(val)
        :meters -> from_meters(val)
        :feet -> from_feet(val)
        :inches -> from_inches(val)
-     end |> round_to(precision) 
+     end |> round_to(precision) #This method looks cleaner than setting a variable on return
    end
   
    defp from_miles(val), do: val * 5.36819e-6
@@ -70,12 +70,26 @@ defmodule Physics.Rocketry do
       |> escape_velocity
   end
 
+  def escape_velocity_two(:earth) do
+    %{mass: 5.972e24, radius: 6.371e6}
+      |> escape_velocity_two
+  end
+
   def escape_velocity(planet) when is_map(planet) do
     planet
       |> calculate_escape
       |> Converter.to_km
       |> Converter.to_nearest_tenth
   end
+
+
+  def escape_velocity_two(planet) when is_map(planet) do
+    planet
+      |> calculate_escape
+      |> ConverterTwo.to_km
+      |> ConverterTwo.to_nearest_tenth
+  end
+
 
   defp calculate_escape(%{mass: mass, radius: radius}) do
     newtons_constant = 6.67e-11

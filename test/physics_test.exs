@@ -11,4 +11,16 @@ defmodule PhysicsTest do
     assert Physics.Rocketry.escape_velocity(planet_x) == 0.9
   end
 
+  test "Converter one works" do
+    assert Converter.to_light_seconds({:miles, 1000}, precision: 5) == 0.00537
+  end
+
+  test "ConverterTwo works" do
+    assert ConverterTwo.to_light_seconds({:miles, 1000}, precision: 5) == 0.00537
+  end
+
+  test "ConverterTwo works with default values" do
+    assert ConverterTwo.to_light_seconds({:miles, 1000}) == 0.00537
+  end
+
 end
