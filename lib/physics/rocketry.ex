@@ -23,6 +23,10 @@ defmodule Physics.Rocketry do
       |> seconds_to_hours
   end
 
+  def orbital_time(time) do
+    newtons_gravitational_constant
+  end
+
   def orbital_acceleration(height) do
     (orbital_speed(height) |> squared) / orbital_radius(height)
   end
