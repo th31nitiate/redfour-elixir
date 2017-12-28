@@ -1,18 +1,18 @@
 defmodule Converter do
 
-  def to_nearest_tenth(val) when is_float(val) do
+  def float_to_nearest_tenth(val) when is_float(val) do
     Float.round(val, 1)
   end
     
-  def to_km(velocity) do
+  def meters_to_kilometers(velocity) do
     velocity / 1000
   end
     
-  def to_meters(val) do
+  def kilometers_to_meters(val) do
     val * 1000      
   end
 
-  def miles_to_km(miles) do
+  def miles_to_kilometers(miles) do
     miles * 1.60934
     |> round_to(3)
   end
@@ -30,10 +30,10 @@ defmodule Converter do
    def round_to(val, precision \\ 5) when is_float(val), do: Float.round(val, precision)
 
    def seconds_to_hours(val)  when is_integer(val), do: val / 3600 
-   def seconds_to_hours(val)  when is_float(val), do: val / 3600 |> to_nearest_tenth
+   def seconds_to_hours(val)  when is_float(val), do: val / 3600 |> float_to_nearest_tenth
 
    def hours_to_seconds(val)  when is_integer(val), do: val * 3600 
-   def hours_to_seconds(val)  when is_float(val), do: val * 3600 |> to_nearest_tenth
+   def hours_to_seconds(val)  when is_float(val), do: val * 3600 |> float_to_nearest_tenth
 
    defp from_miles(val), do: val * 5.36819e-6
    defp from_meters(val), do: val * 3.335638620368e-9

@@ -13,8 +13,8 @@ defmodule Physics.Rocketry do
   def escape_velocity(planet) when is_map(planet) do
     planet
       |> calculate_escape
-      |> to_km
-      |> to_nearest_tenth
+      |> meters_to_kilometers
+      |> float_to_nearest_tenth
   end
 
   def orbital_term(height) do
@@ -28,16 +28,12 @@ defmodule Physics.Rocketry do
     |> cubed
   end
 
-
-
-
-
   def earth_to_orbit_height_for_term(hours) do
     hours
       |> hours_to_seconds
       |> orbital_height_for_term
       |> earth_to_orbit_height
-      |> to_km
+      |> meters_to_kilometers
   end
   
   def orbital_acceleration(height) do
@@ -56,7 +52,7 @@ defmodule Physics.Rocketry do
   end
 
   defp orbital_radius(height) do
-    Planets.earth.radius + (height |> to_meters)
+    Planets.earth.radius + (height |> kilometers_to_meters)
   end
 
   defp earth_to_orbit_height(height), do: height - Planets.earth.radius

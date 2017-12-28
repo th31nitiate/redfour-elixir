@@ -10,8 +10,8 @@ defmodule CompilerProblemTest do
     end
   
     test "converting miles to km" do
-      val = 120.5 |> miles_to_km
-      assert val == 193.925 #The initial value looked incoorect. Accornding to google 1.60934
+      val = 120.5 |> miles_to_kilometers
+      assert val == 193.925 #The initial value looked incorrect. Accornding to google 1.60934
       # is the correct value, I am not mathatician so I have agguested initial 192.121
     end
   end
