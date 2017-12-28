@@ -54,9 +54,7 @@ defmodule Physics.Rocketry do
       |> to_km
   end
   
-  defp earth_to_orbit_height(height) do
-    height - Planets.earth.radius
-  end
+  defp earth_to_orbit_height(height), do: height - Planets.earth.radius
   
   defp orbital_height_for_term(seconds) do
     newtons_gravitational_constant * Planets.earth.mass * (seconds |> squared)

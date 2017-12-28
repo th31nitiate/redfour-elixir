@@ -34,9 +34,14 @@ defmodule PhysicsTest do
     assert orbital_acc == 9.515619587729839
   end
 
+  test "Orbital radius for earth at 99km" do
+    orbital_acc = Physics.Rocketry.orbital_acceleration(99)
+    assert orbital_acc == 9.515619587729839
+  end
+
   test "Orbital term for 6530km above earth" do
     term = Physics.Rocketry.orbital_term(6530)
-    assert (term > 4.0) && (term < 5.0) 
+    assert (term > 4) && (term < 5) 
   end
 
 end
