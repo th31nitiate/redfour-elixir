@@ -1,5 +1,5 @@
 defmodule ArgumentErrorTest do
-    use ExUnit.Case 
+  use ExUnit.Case, async: true
   
     def say_hello(name, opts) do
       "Hello #{name}, I see that you're #{opts[:age]} years old"

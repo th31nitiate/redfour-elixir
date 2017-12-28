@@ -1,7 +1,9 @@
 defmodule Physics.Rocketry do
-  import Converter
+
   import Calcs
-  import Physics.Laws
+  import Converter
+  #exclude everything but the one function we need. You must specify arity here
+  import Physics.Laws, only: [newtons_gravitational_constant: 0]
   import Planets
 
   # shortend the code a bit, by doing one liners for diffault values
