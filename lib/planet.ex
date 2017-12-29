@@ -29,6 +29,7 @@ defmodule Planet do
       %{name: :jupiter, type: :gaseous, mass: 1.89e27, radius: 7.14e7},
       %{name: :saturn, type: :gaseous, mass: 5.68e26, radius: 6.02e7},
       %{name: :uranus, type: :gaseous, mass: 8.68e25, radius: 2.55e7},
+      %{name: :moon, type: :rocky, mass: 7.3e21, radius: 1.73e6},
       %{name: :neptune, type: :gaseous, mass: 1.02e26, radius: 2.47e7}
       ]
 
