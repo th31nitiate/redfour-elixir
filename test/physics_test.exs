@@ -24,7 +24,7 @@ defmodule PhysicsTest do
   end
 
   test "Test to ensure the Ev is valid for moon" do
-    assert Physics.Rocketry.escape_velocity(:moon) == 0.8 #We are rounding up to the nearest 10th
+    assert Physics.Rocketry.escape_velocity(:moon) == 0.8 
   end
 
   test "Seconds to hours test" do

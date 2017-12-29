@@ -31,19 +31,34 @@ defmodule SolarTest do
     end
 
     test "total flare power using recursion", %{data: flares} do
-        Solar.total_flare_power(flares) |> IO.inspect 
-      end
+        assert Solar.total_flare_power(flares) == 147717.966
+    end
     
-      test "total flare power using enums", %{data: flares} do
-        Solar.total_flare_power_enum(flares) |> IO.inspect  # Hey! Why is this answer different! Can you adjust this function for me?
-      end
+    test "total flare power using enums", %{data: flares} do
+        assert Solar.total_flare_power_enum(flares) == 216911.7  # Hey! Why is this answer different! Can you adjust this function for me?
+    end
     
-      test "a flare list with comprehensions", %{data: flares} do
-        Solar.flare_list(flares) |> IO.inspect
-      end
+    test "a flare list with comprehensions", %{data: flares} do
+      expected_value = [
+        %{is_deadly: true, power: 99000},
+        %{is_deadly: false, power: 58.0},
+        %{is_deadly: false, power: 12.0}, 
+        %{is_deadly: false, power: 3.2},
+        %{is_deadly: false, power: 836.0},
+        %{is_deadly: false, power: 2.5},
+        %{is_deadly: true, power: 72000},
+        %{is_deadly: true, power: 45000},
+      ]
+      
+      assert Solar.flare_list(flares) == expected_value
+    end
     
-      test "a flare list with enums", %{data: flares} do
-        Solar.flare_list_enums(flares) |> IO.inspect
-      end
+    test "a flare list with enums", %{data: flares} do
+      expected_value = [%{is_deadly: true, power: 99000}, %{is_deadly: false, power: 58.0},
+      %{is_deadly: false, power: 12.0}, %{is_deadly: false, power: 3.2},
+      %{is_deadly: false, power: 836.0}, %{is_deadly: false, power: 2.5},
+      %{is_deadly: true, power: 72000}, %{is_deadly: true, power: 45000}]
+      assert Solar.flare_list_enums(flares) == expected_value
+    end
     
   end
