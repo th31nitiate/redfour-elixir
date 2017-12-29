@@ -26,13 +26,28 @@ defmodule PhysicsTest do
 
   test "Test to ensure the Ev is valid for moon" do
     moon = %{mass: 7.35e22, radius: 1.738e6}
-    assert Physics.Rocketry.escape_velocity(:moon) == 2.4 #We are rounding up to the nearest 10th
+    assert Physics.Rocketry.escape_velocity(:moon) == 0.8 #We are rounding up to the nearest 10th
   end
 
   test "Orbital acceleration for earth at 99km" do
-    orbital_acc = Physics.Rocketry.orbital_acceleration(99)
+    orbital_acc = Physics.Rocketry.orbital_acceleration(100)
     assert orbital_acc == 9.515619587729839 # the peceision here helps ensure that
     #The acc is correct.
+  end
+
+  test "Orbital term at 100km" do
+    x = Physics.Rocketry.orbital_term(100)
+    assert x == 1.4
+  end
+
+  @tag :pending
+  test "Orbital acceleration for Jupiter at 100km" do
+    #assert x == 24.670096337229204
+  end
+
+  @tag :pending
+  test "Orbital term at 100km for Saturn at 6000km" do
+    #assert x == 4.9
   end
 
   test "Orbital term for 6530km - earth radius" do
