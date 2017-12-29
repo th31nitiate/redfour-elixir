@@ -18,45 +18,46 @@ defmodule PlanetTest do
     test "Accounting for Venus blowing up", %{planets: planets} do
       venus = Enum.at(planets, 1)
       venus = %{venus | ev: 7.2}
-      assert venus.ev == 7.2
+      assert venus.ev == 7.2 # I dont really get this test but we a dynamically changing the venus Ev
     end
   
-    test "Enum at", %{planets: planets} do
+    test "Enum at planets location 2(array) or 3", %{planets: planets} do
       p = Enum.at(planets, 2)
       assert p.name == "Earth"
     end
   
-    test "Enum find", %{planets: planets} do
+    test "Enum find Mercury by Ev value 4.3", %{planets: planets} do
       p = Enum.find(planets, &(&1.ev == 4.3))
       assert p.name == "Mercury"
     end
   
-    test "Enum filter", %{planets: planets} do
+    test "Enum filter by showing only rocky planets", %{planets: planets} do
       p = Enum.filter(planets, &(&1.type == :rocky))
       assert length(p) == 4
     end
   
-    test "Enum.map", %{planets: planets} do
+    test "Enum.map to identify planet names", %{planets: planets} do
+      expected_value = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
       p = Enum.map(planets, &(&1.name))
-      #this should be a list of names... assert for me?
+      assert p == expected_value
     end
   
     test "a comprehension", %{planets: planets} do
+      expected_value = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
       planet_names = for planet <- planets, do: planet.name  
-      IO.inspect planet_names
-      #this should be a list of names... assert for me?
+      assert planet_names == expected_value
     end
   
-    test "a comprehension with a filter", %{planets: planets} do
+    test "a comprehension with a filter for rocky planets", %{planets: planets} do
+      expected_value = ["Mercury", "Venus", "Earth", "Mars"]
       planet_names = for planet <- planets, planet.type == :rocky, do: planet.name  
-      IO.inspect planet_names
-      #this should be a list of names... assert for me?
+      assert planet_names == expected_value
     end
   
     test "a comprehension with a filter, matched", %{planets: planets} do
+      expected_value = ["Mercury", "Venus", "Earth", "Mars"]
       planet_names = for %{name: name, type: type} <- planets, type == :rocky, do: name  
-      IO.inspect planet_names
-      #this should be a list of names... assert for me?
+      assert planet_names == expected_value
     end
   
   end
