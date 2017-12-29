@@ -9,23 +9,18 @@
 
 
 defmodule Physics.Rocketry do
-
+  require IEx
   import Calcs
   import Converter
-  #exclude everything but the one function we need. You must specify arity here
-  import Physics.Laws, only: [newtons_gravitational_constant: 0]
-  import Planets
+  import Physics.Laws
+  import Planet
 
-  # shortend the code a bit, by doing one liners for diffault values
-  def escape_velocity(:earth), do: earth |> escape_velocity
-  def escape_velocity(:moon), do: moon |> escape_velocity
-  def escape_velocity(:mars), do: mars |> escape_velocity
-
-
+  # this assumes we will always have the values present for planet in our system.
 
   #escape reurnts type kilometers
-  def escape_velocity(planet) when is_map(planet) do
+  def escape_velocity(planet) when is_atom(planet) do
     planet
+      |> select
       |> calculate_escape
       |> meters_to_kilometers
       |> float_to_nearest_tenth

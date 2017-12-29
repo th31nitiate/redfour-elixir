@@ -19,17 +19,20 @@
 
 # Finally, I want each planet to be accessible with a key: earth = Planet.select[:earth]
 
-defmodule Planets do
-  def earth do
-    %{mass: 5.972e24, radius: 6.37e6}
-  end
+defmodule Planet do
+  def select(planet) do
+    planets = [
+      %{name: :mercury, type: :rocky, mass: 3.3e23, radius: 2.439e6},
+      %{name: :venus, type: :rocky, mass: 4.86e24, radius: 6.05e6},
+      %{name: :earth, type: :rocky, mass: 5.972e24, radius: 6.37e6},
+      %{name: :mars, type: :rocky, mass: 6.41e23, radius: 3.37e6},
+      %{name: :jupiter, type: :gaseous, mass: 1.89e27, radius: 7.14e7},
+      %{name: :saturn, type: :gaseous, mass: 5.68e26, radius: 6.02e7},
+      %{name: :uranus, type: :gaseous, mass: 8.68e25, radius: 2.55e7},
+      %{name: :neptune, type: :gaseous, mass: 1.02e26, radius: 2.47e7}
+      ]
 
-  def mars do
-    %{mass: 6.41e23, radius: 3.37e6}
-  end
-
-  def moon do
-    %{mass: 7.3e21, radius: 1.73e6}
+      Enum.find(planets, &(&1.name == planet))
   end
 end
   
