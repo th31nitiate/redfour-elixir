@@ -19,4 +19,14 @@ defmodule SolarTest do
     test "We have 8 solar flares", %{data: flares} do
         assert length(flares) == 8
     end
+
+    test "Go inside", %{data: flares} do
+        d = Solar.no_eva(flares)
+        assert length(d) == 3
+    end
+
+    test "the deadliest flare", %{data: flares} do
+        death = Solar.deadliest(flares)
+        assert death == 99000 #this is wrong, becuase this value is a float 99000 is largest inspected in in mem
+    end
   end
