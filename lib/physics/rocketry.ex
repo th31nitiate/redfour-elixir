@@ -38,7 +38,7 @@ defmodule Physics.Rocketry do
       |> meters_to_kilometers
   end
   
-  def orbital_acceleration(planet,height), do: (orbital_speed(planet,height) |> squared) / orbital_radius(planet,height)
+  def orbital_acceleration(planet,height), do: (orbital_speed(planet,height) |> squared) / orbital_radius(planet,height) 
 
   def orbital_speed(planet,height) do
     newtons_gravitational_constant * planet.mass / orbital_radius(planet,height)
