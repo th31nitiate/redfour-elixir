@@ -27,7 +27,7 @@ defmodule PlanetTest do
     end
   
     test "escape velocity of mars is correct" do
-      ev = Planet.escape_velocity(Planet.select(:mars))
+      ev = Planet.escape_velocity(Planet.select[:mars])
       assert ev == 5.0 #what should this value be?
     end   
 
