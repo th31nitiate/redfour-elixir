@@ -38,14 +38,6 @@ defmodule AmnesiaTest do
       end
       assert p.id == 1
     end
-  
-
-    test "It can read the planet using id 1" do
-      p = Amnesia.transaction! do
-        Planet.read(1)
-      end
-      assert p.id == 1
-    end
     test "It reads rocky planets using match" do
       planets = Amnesia.transaction! do
         [type: :rocky] |> Planet.match
