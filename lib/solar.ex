@@ -40,6 +40,7 @@ defmodule Solar do
         power(flare) + total
       end
     end
+    
     def flare_list(flares) do
   
       for flare <- flares,

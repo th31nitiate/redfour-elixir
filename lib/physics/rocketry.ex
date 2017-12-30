@@ -13,17 +13,6 @@ defmodule Physics.Rocketry do
   import Physics.Laws
   import Planet
 
-  # this assumes we will always have the values present for planet in our system.
-  def escape_velocity(planet) when is_atom(planet), do: select(planet) |> escape_velocity
-
-  #escape reurnts type kilometers
-  def escape_velocity(planet) when is_map(planet) do
-    planet
-      |> calculate_escape
-      |> meters_to_kilometers
-      |> float_to_nearest_tenth
-  end
-
   def orbital_term(planet,height) do
     4 * (:math.pi |> squared) * (orbital_radius(planet,height) |> cubed) / (newtons_gravitational_constant * planet.mass)
       |> square_root
@@ -46,10 +35,7 @@ defmodule Physics.Rocketry do
   end
 
   #Privates
-  defp calculate_escape(%{mass: mass, radius: radius}) do
-    2 * newtons_gravitational_constant * mass / radius
-      |> square_root
-  end
+
 
   defp orbital_radius(planet,height), do: planet.radius + (height |> kilometers_to_meters)
   defp earth_to_orbit_height(planet,height), do: height - planet.radius #this is in meters

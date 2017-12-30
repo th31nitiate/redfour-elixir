@@ -20,6 +20,11 @@
 # Finally, I want each planet to be accessible with a key: earth = Planet.select[:earth]
 
 defmodule Planet do
+  require IEx
+  import Calcs
+  import Converter
+  import Physics.Laws
+
   def select(planet) do
     planets = [
       %{name: :mercury, type: :rocky, mass: 3.3e23, radius: 2.439e6},
@@ -34,6 +39,25 @@ defmodule Planet do
       ]
 
       Enum.find(planets, &(&1.name == planet))
+  end
+
+
+
+  # this assumes we will always have the values present for planet in our system.
+  def escape_velocity(planet \\ :earth)
+  def escape_velocity(planet) when is_atom(planet), do: select(planet) |> escape_velocity
+
+  #escape reurnts type kilometers
+  def escape_velocity(planet) when is_map(planet) do
+    planet
+        |> calculate_escape
+        |> meters_to_kilometers
+        |> float_to_nearest_tenth
+  end
+
+  defp calculate_escape(%{mass: mass, radius: radius}) do
+    2 * newtons_gravitational_constant * mass / radius
+      |> square_root
   end
 end
   
