@@ -1,11 +1,3 @@
-# Let's remove all of the extra functions for `:earth`, `:moon` and `:mars` - we don't need them. 
-# Instead, define a default planet at the top of the module; use `@earth` and 
-# reference your `Planet.select[:earth]` structure.
-
-# Anything else you see that you think you can improve, have at it. **The goal is clarity and elegance** so we can build this out.
-
-# I've been waiting on a data drop from the Science Team and I think we'll be all set soon for working with PostgreSQL. That'll be fun.
-
 defmodule Physics.Rocketry do
   require IEx
   import Calcs
