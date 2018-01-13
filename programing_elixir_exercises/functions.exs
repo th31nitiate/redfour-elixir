@@ -26,3 +26,20 @@ end
 devider = fn n ->
     decider.({rem(n, 3), rem(n, 5), n})
 end
+
+
+#Funcation 4
+prefix = fn title -> (fn name -> "#{title} #{name}" end) end
+#
+#mrs = prefix.("Mrs")
+#mrs.("Smith")
+#prefix.("Elixir").("Rocks")
+
+
+#Funcations 5 
+#The & is like one of the collest things ever :D
+#Enum.map [1,2,3,4], fn x -> x + 2 end
+Enum.map [1,2,3,4], &( &1 + 2)
+#Enum.each [1,2,3,4], fn x -> IO.inspect x end
+Enum.map [1,2,3,4], &(IO.inspect  &1)
+
